@@ -1,0 +1,155 @@
+syntax="proto3";
+option  java_multiple_files = true;
+
+option java_package="com.example.movie";
+
+// Movie getAll & findByTitle
+message MovieRequest {
+
+}
+
+message MovieLikeRequest {
+  string title = 1;
+}
+
+message MovieDto {
+  repeated Film film = 1;
+}
+
+message MovieDtoResponse {
+   MovieDto movie = 1;
+}
+
+message Film{
+  uint64 film_id = 1;
+  string title = 2;
+  string description=3;
+  int32 release_year = 4;
+  uint64 director_id = 5;
+  uint64 country_id = 6;
+  double imdb = 7;
+  string poster = 8;
+  repeated string actors = 9;
+  repeated string categories = 10;
+  string director = 11;
+  string country = 12;
+}
+
+//-----------------------------------------------------------------
+
+// Actor Movies FinByLike
+message ActorFilms{
+  uint64 film_id = 1;
+  string title = 2;
+  string description=3;
+  int32 release_year = 4;
+  uint64 director_id = 5;
+  uint64 country_id = 6;
+  double imdb = 7;
+  string poster = 8;
+  string actor = 9;
+  repeated string categories = 10;
+  string director = 11;
+  string country = 12;
+}
+message ActorMovieDto {
+  repeated ActorFilms film = 1;
+}
+
+
+message ActorMovieResponse {
+  ActorMovieDto movie = 1;
+}
+
+
+message ActorMoviesRequest {
+  string name = 1;
+}
+
+//----------------------------------------------------------------------
+
+//GET ALL FAVS
+message FavouritesRequest {
+
+}
+
+message FavMovies {
+  uint64 film_id = 1;
+  string title = 2;
+  string actors = 3;
+  string director = 4;
+  string year = 5;
+}
+
+message  FavouritesDTO {
+  repeated FavMovies favMovies = 1;
+}
+
+message  FavouritesResponse {
+  FavouritesDTO film = 1;
+}
+//----------------------------------------------------------------------
+
+// POST FAVS
+message PostFavsRequest{
+  uint64 film_id = 1;
+}
+
+message PostFavsResponse {
+  bool isSaved = 1;
+}
+
+//-----------------------------------------------------------------------
+
+// DELETE FAVS
+message DeleteFavsRequest{
+  uint64 film_id = 1;
+}
+
+message DeleteFavsResponse {
+  bool isDeleted= 1;
+}
+
+//-----------------------------------------------------------------------
+
+// GET COMMENTS
+message CommentRequest {
+  uint64 film_id = 1;
+}
+
+message Comments {
+  string comment = 1;
+}
+
+message CommentsDTO {
+  repeated  Comments comments = 1;
+}
+
+message CommentResponse {
+  CommentsDTO comments = 1;
+}
+
+//---------------------------------------------------------
+
+// POST COMMENTS
+message CommentPostRequest {
+  string comment = 1;
+  int32 film_id = 2;
+}
+
+message CommentPostResponse {
+  bool isSaved= 1;
+}
+
+//---------------------------------------------------------
+
+service MovieService {
+  rpc getMovies(MovieRequest) returns(MovieDtoResponse);
+  rpc getMoviesLike(MovieLikeRequest) returns(MovieDtoResponse);
+  rpc getActorMovies(ActorMoviesRequest) returns(ActorMovieResponse);
+  rpc getFavourites(FavouritesRequest) returns(FavouritesResponse);
+  rpc postFavourites(PostFavsRequest) returns(PostFavsResponse);
+  rpc deleteFavourites(DeleteFavsRequest) returns(DeleteFavsResponse);
+  rpc getComments(CommentRequest) returns(CommentResponse);
+  rpc postComments(CommentPostRequest) returns(CommentPostResponse);
+}
