@@ -1,0 +1,79 @@
+.movie-container {
+    margin: auto;
+    background-color: #f4f4f4;
+    width: 600px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border: 1px solid #c00000;
+    border-bottom: 3px solid #c00000;
+    cursor: default;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.image-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.info {
+    padding: 0 10px;
+    padding-bottom: 10px;
+}
+
+.info p {
+    color: #666;
+    text-align: justify;
+}
+
+.action_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.action_container button {
+    background-color: #f5c517;
+    border: 1px solid #f5c517;
+    padding: 10px 20px;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+    outline: none;
+    float: right;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.action_container button:hover {
+    background-color: #fadb68;
+}
+
+.action_container .description {
+    padding-top: 15px;
+    display: none;
+    font-size: 15px;
+}
+
+.action_container i {
+    color: #ccc;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.action_container i:hover {
+    color: #b0514c;
+}
+
+.action_container i.is_favourite {
+    color: #c00000;
+}
